@@ -7,7 +7,7 @@ const cors=require('cors')
 const app = express()
 app.use(bodyParser.json())
 app.use(cors())
-
+// https://bloodbank-exwj.onrender.com
 
 async function connectToDb() {
     try {
@@ -54,15 +54,14 @@ app.post('/add-donor', async function (request, response) {
 
 app.get('/req-donor', async function (request, response) {
     try {
-        const { donorname } = request.query
-        const donor = await Donor.find({ donorname })
-        response.status(200).json(donor)
+        const donors = await Donor.find(); // Fetch all donors without filtering
+        response.status(200).json(donors);
     } catch (error) {
-        console.error('Error fetching donar:', error)
+        console.error('Error fetching donors:', error);
         response.status(500).json({
             status: 'failure',
-            message: 'Failed to fetch donar',
+            message: 'Failed to fetch donors',
             error: error.message
-        })
+        });
     }
-})
+});
