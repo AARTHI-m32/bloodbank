@@ -48,6 +48,35 @@ app.post('/add-user',async function(request,response){
         })
     }
 })
+
+app.post('/req-user',async function(request,response){
+    try{
+        const {username,password}=request.body
+        const user=await Register.findOne({username,password})
+
+        if(user){
+            response.status(200).json({
+                "status":"success",
+                "message":"Valid user"
+            })
+        }
+        else{
+            response.status(401).json({
+                "status":"failure",
+                "message":"Invalid user"
+            })
+        }
+    }
+    
+    catch (error) {
+        console.error('Error fetching users:', error);
+        response.status(500).json({
+          status: 'failure',
+          message: 'Failed to fetch users',
+          error: error.message
+        })
+      }
+})
 app.post('/add-donor', async function (request, response) {
     try {
         const newDonor = await Donor.create({
