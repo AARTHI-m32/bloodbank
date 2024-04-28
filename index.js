@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const express = require('express')
 const Donor = require('./schema.js')
+const Register=require('./register.js')
 const bodyParser = require('body-parser')
 const cors=require('cors')
 
@@ -25,6 +26,28 @@ async function connectToDb() {
 
 connectToDb()
 
+app.post('/add-user',async function(request,response){
+    try{
+        const newUser=await Register.create({
+            username:request.body.username,
+            email:request.body.email,
+            password:request.body.password
+        })
+        response.status(201).json({
+            status: 'success',
+            message: 'User created successfully',
+            user: newUser
+        })
+    }
+    catch(error){
+        console.error('Error creating User:', error)
+        response.error(500).json({
+            status: 'failure',
+            message: 'Failed to create User',
+            error: error.message
+        })
+    }
+})
 app.post('/add-donor', async function (request, response) {
     try {
         const newDonor = await Donor.create({
@@ -54,7 +77,7 @@ app.post('/add-donor', async function (request, response) {
 
 app.get('/req-donor', async function (request, response) {
     try {
-        const donors = await Donor.find(); // Fetch all donors without filtering
+        const donors = await Donor.find(); 
         response.status(200).json(donors);
     } catch (error) {
         console.error('Error fetching donors:', error);
