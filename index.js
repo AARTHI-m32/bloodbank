@@ -118,4 +118,45 @@ app.get('/req-donor', async function (request, response) {
     }
 });
 
+app.put('/edit-donor/:id', async function (request, response) {
+    try {
+        const donorId = request.params.id;
+        const updatedDonor = await Donor.findOneAndUpdate(
+            { _id: donorId },
+            {
+                $set: {
+                    donorname: request.body.donorname,
+                    age: request.body.age,
+                    email: request.body.email,
+                    bloodgroup: request.body.bloodgroup,
+                    gender: request.body.gender,
+                    address: request.body.address,
+                    phoneno: request.body.phoneno
+                }
+            },
+            { new: true } // To return the updated donor
+        );
+
+        if (!updatedDonor) {
+            return response.status(404).json({
+                status: 'failure',
+                message: 'Donor not found'
+            });
+        }
+
+        response.status(200).json({
+            status: 'success',
+            message: 'Donor updated successfully',
+            donor: updatedDonor
+        });
+    } catch (error) {
+        console.error('Error updating donor:', error);
+        response.status(500).json({
+            status: 'failure',
+            message: 'Failed to update donor',
+            error: error.message
+        });
+    }
+});
+
 module.exports = app; 
