@@ -118,6 +118,22 @@ app.get('/req-donor', async function (request, response) {
     }
 });
 
+app.get('/get-donor/:id', async (request, response) => {
+    try {
+        const donorId = request.params.id;
+        const donor = await Donor.findById(donorId);
+
+        if (!donor) {
+            return response.status(404).json({ error: 'Donor not found' });
+        }
+
+        // Return the donor details
+        response.status(200).json(donor);
+    } catch (error) {
+        console.error('Error fetching donor details:', error);
+        response.status(500).json({ error: 'Failed to fetch donor details' });
+    }
+});
 app.put('/edit-donor/:id', async function (request, response) {
     try {
         const donorId = request.params.id;
