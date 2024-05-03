@@ -106,6 +106,7 @@ app.post('/add-donor', async function (request, response) {
 
 app.get('/req-donor', async function (request, response) {
     try {
+      
         const donors = await Donor.find(); 
         response.status(200).json(donors);
     } catch (error) {
@@ -120,7 +121,7 @@ app.get('/req-donor', async function (request, response) {
 
 app.get('/get-donor/:_id', async (request, response) => {
     try {
-        const donorId = request.params._id;
+        const donorId = request.query._id;
         const donor = await Donor.findById(donorId);
 
         if (!donor) {
