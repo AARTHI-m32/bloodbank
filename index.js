@@ -136,11 +136,12 @@ app.get('/get-donor', async (request, response) => {
         response.status(500).json({ error: 'Failed to fetch donor details' });
     }
 });
-app.put('/edit-donor/:_id', async function (request, response) {
+app.put('/edit-donor', async function (request, response) {
     try {
-        const donorId = request.params._id;
+        const { _id } = request.query;
+        // const donorId = request.params._id;
         const updatedDonor = await Donor.findOneAndUpdate(
-            { _id: donorId },
+            { _id: _id },
             {
                 $set: {
                     donorname: request.body.donorname,
