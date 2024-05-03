@@ -119,10 +119,11 @@ app.get('/req-donor', async function (request, response) {
     }
 });
 
-app.get('/get-donor/:_id', async (request, response) => {
+app.get('/get-donor', async (request, response) => {
     try {
-        const donorId = request.query._id;
-        const donor = await Donor.findById(donorId);
+        const { _id } = request.query;
+        // const donorId = request.params._id;
+        const donor = await Donor.findOne({_id});
 
         if (!donor) {
             return response.status(404).json({ error: 'Donor not found' });
