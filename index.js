@@ -118,9 +118,9 @@ app.get('/req-donor', async function (request, response) {
     }
 });
 
-app.get('/get-donor/:id', async (request, response) => {
+app.get('/get-donor/:_id', async (request, response) => {
     try {
-        const donorId = request.params.id;
+        const donorId = request.params._id;
         const donor = await Donor.findById(donorId);
 
         if (!donor) {
@@ -134,9 +134,9 @@ app.get('/get-donor/:id', async (request, response) => {
         response.status(500).json({ error: 'Failed to fetch donor details' });
     }
 });
-app.put('/edit-donor/:id', async function (request, response) {
+app.put('/edit-donor/:_id', async function (request, response) {
     try {
-        const donorId = request.params.id;
+        const donorId = request.params._id;
         const updatedDonor = await Donor.findOneAndUpdate(
             { _id: donorId },
             {
