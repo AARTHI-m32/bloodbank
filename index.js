@@ -4,6 +4,7 @@ const Donor = require('./schema.js')
 const Register=require('./register.js')
 const bodyParser = require('body-parser')
 const cors=require('cors')
+const Donated = require('./donated.js')
 
 const app = express()
 app.use(bodyParser.json())
@@ -76,6 +77,32 @@ app.post('/req-user',async function(request,response){
           error: error.message
         })
       }
+})
+
+app.post('/add-donated',async function (request,response){
+    
+    try{
+        const newDonated = await Donated.create({
+            id:request.body.id,
+            amount:request.body.amount,
+            hospitalname:request.body.hospitalname,
+            hospitaladdress:request.body.hospitaladdress,
+            date:request.body.date,
+        })
+        response.status(201).json({
+            status: 'success',
+            message: 'details added successfully',
+            user: newDonated
+        })
+    } catch (error) {
+        console.error('Error ading details:', error)
+        response.status(500).json({
+            status: 'failure',
+            message: 'Failed to add donated details',
+            error: error.message
+        })
+    }
+
 })
 app.post('/add-donor', async function (request, response) {
     try {

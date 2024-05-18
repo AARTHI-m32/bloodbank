@@ -40,6 +40,7 @@ const donorSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    
 });
 
 const Donor = mongoose.model("Donor", donorSchema);
