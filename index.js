@@ -95,7 +95,7 @@ app.post('/add-donated',async function (request,response){
             user: newDonated
         })
     } catch (error) {
-        console.error('Error ading details:', error)
+        console.error('Error adding details:', error)
         response.status(500).json({
             status: 'failure',
             message: 'Failed to add donated details',
@@ -204,5 +204,26 @@ app.put('/edit-donor', async function (request, response) {
         });
     }
 });
+
+app.get('/donor-details', async (request, response) => {
+    try {
+        const { _id } = request.query;
+
+        const objectId = new mongoose.Types.ObjectId(_id);
+        const donor = await Donor.findById({_id});
+        
+        if (!donor) {
+            return response.status(404).json({ error: 'Donor not found' });
+        }
+
+        const donatedDetails = await Donated.find({ id: _id });
+
+        response.status(200).json({ donor, donatedDetails });
+    } catch (error) {
+        console.error('Error fetching donor details:', error);
+        response.status(500).json({ error: 'Failed to fetch donor details' });
+    }
+});
+
 
 module.exports = app; 
