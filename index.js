@@ -205,25 +205,36 @@ app.put('/edit-donor', async function (request, response) {
     }
 });
 
+
 app.get('/donor-details', async (request, response) => {
     try {
-        const { _id } = request.query;
+        // Fetch all documents from the Donated collection
+        const donatedDetails = await Donated.find();
 
-        const objectId = new mongoose.Types.ObjectId(_id);
-        const donor = await Donor.findById({_id});
-        
-        if (!donor) {
-            return response.status(404).json({ error: 'Donor not found' });
+        // Array to store results for each ID
+        const donorDetailsList = [];
+
+        // Loop through each donated detail
+        for (const donatedDetail of donatedDetails) {
+            // Fetch donor details for the current ID
+            const donorId = donatedDetail.id;
+
+            // Fetch donor details using the current ID
+            const donor = await Donor.findById(donorId);
+            if (!donor) {
+                // If donor not found, skip to the next ID
+                continue;
+            }
+
+            // Add donor and donated details to the result list
+            donorDetailsList.push({ donor, donatedDetail });
         }
 
-        const donatedDetails = await Donated.find({ id: _id });
-
-        response.status(200).json({ donor, donatedDetails });
+        response.status(200).json(donorDetailsList);
     } catch (error) {
         console.error('Error fetching donor details:', error);
         response.status(500).json({ error: 'Failed to fetch donor details' });
     }
 });
-
 
 module.exports = app; 
