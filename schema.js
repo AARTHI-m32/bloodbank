@@ -40,6 +40,10 @@ const donorSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    donated: {
+        type: Boolean,
+        default: false  
+    }
     
 });
 

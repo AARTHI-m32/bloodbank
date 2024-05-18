@@ -134,7 +134,7 @@ app.post('/add-donor', async function (request, response) {
 app.get('/req-donor', async function (request, response) {
     try {
       
-        const donors = await Donor.find(); 
+        const donors = await Donor.find({ donated: false }); 
         response.status(200).json(donors);
     } catch (error) {
         console.error('Error fetching donors:', error);
@@ -208,25 +208,20 @@ app.put('/edit-donor', async function (request, response) {
 
 app.get('/donor-details', async (request, response) => {
     try {
-        // Fetch all documents from the Donated collection
         const donatedDetails = await Donated.find();
 
-        // Array to store results for each ID
         const donorDetailsList = [];
 
-        // Loop through each donated detail
         for (const donatedDetail of donatedDetails) {
-            // Fetch donor details for the current ID
             const donorId = donatedDetail.id;
 
-            // Fetch donor details using the current ID
             const donor = await Donor.findById(donorId);
             if (!donor) {
-                // If donor not found, skip to the next ID
                 continue;
             }
 
-            // Add donor and donated details to the result list
+            await Donor.findByIdAndUpdate(donorId, { donated: true });
+
             donorDetailsList.push({ donor, donatedDetail });
         }
 
@@ -236,5 +231,6 @@ app.get('/donor-details', async (request, response) => {
         response.status(500).json({ error: 'Failed to fetch donor details' });
     }
 });
+
 
 module.exports = app; 
