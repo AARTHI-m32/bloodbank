@@ -29,7 +29,10 @@ connectToDb()
 
 app.post('/add-user',async function(request,response){
     try{
+        const userId = new mongoose.Types.ObjectId(); // Generate a new ObjectId
+         
         const newUser=await Register.create({
+            _id: userId,
             username:request.body.username,
             email:request.body.email,
             password:request.body.password
@@ -37,7 +40,8 @@ app.post('/add-user',async function(request,response){
         response.status(201).json({
             status: 'success',
             message: 'User created successfully',
-            user: newUser
+            user: newUser,
+            _id: userId
         })
     }
     catch(error){
@@ -82,7 +86,11 @@ app.post('/req-user',async function(request,response){
 app.post('/add-donated',async function (request,response){
     
     try{
+
+        // Use the same ID provided from the register process          
         const newDonated = await Donated.create({
+           
+            _id: request.body.id,
             id:request.body.id,
             amount:request.body.amount,
             hospitalname:request.body.hospitalname,
@@ -106,7 +114,9 @@ app.post('/add-donated',async function (request,response){
 })
 app.post('/add-donor', async function (request, response) {
     try {
+        const donorId = request.body.id; 
         const newDonor = await Donor.create({
+            _id: donorId,
             donorname: request.body.donorname,
             age:request.body.age,
             email: request.body.email,
@@ -229,6 +239,26 @@ app.get('/donor-details', async (request, response) => {
     } catch (error) {
         console.error('Error fetching donor details:', error);
         response.status(500).json({ error: 'Failed to fetch donor details' });
+    }
+});
+
+
+app.get('/profile/:donor_id', async (request, response) => {
+    const donorId = request.params.donor_id;
+
+    try {
+        const donorDetails = await Donor.findById(donorId);
+        const donationDetails = await Donated.find({ id: donorId }).sort({ date: -1 });
+
+        const result = {
+            donorDetails,
+            donationDetails
+        };
+
+        response.json(result);
+    } catch (err) {
+        console.error('Error fetching profile data:', err);
+        response.status(500).send('Server error');
     }
 });
 

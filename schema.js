@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const donorSchema = new mongoose.Schema({
-    id: mongoose.Schema.Types.ObjectId,
+    _id: mongoose.Schema.Types.ObjectId,
     donorname: {
         type: String,
         required: true
@@ -42,7 +42,7 @@ const donorSchema = new mongoose.Schema({
     },
     donated: {
         type: Boolean,
-        default: false  
+        default: false,
     }
     
 });

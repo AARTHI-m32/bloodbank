@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const registerSchema=new mongoose.Schema({
-    id:mongoose.Schema.Types.ObjectId,
+    _id: mongoose.Schema.Types.ObjectId,
     username:{
         type:String,
         required:true
