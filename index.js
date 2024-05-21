@@ -114,7 +114,8 @@ app.post('/add-donated',async function (request,response){
 })
 app.post('/add-donor', async function (request, response) {
     try {
-        const donorId = request.body.id; 
+        const {donorId } = request.query;
+        // const donorId = request.body.id; 
         const newDonor = await Donor.create({
             _id: donorId,
             donorname: request.body.donorname,
