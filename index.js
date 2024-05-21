@@ -226,13 +226,13 @@ app.get('/donor-details', async (request, response) => {
         for (const donatedDetail of donatedDetails) {
             const donorId = donatedDetail.id;
 
-            const donor = await Donor.find({ id: donorId });
+            const donor = await Donor.find({_id: donorId });
             if (!donor) {
                 continue;
             }
 
             // await Donor.findByIdAndUpdate(donorId, { donated: true });
-            await Donor.updateOne({ id: donorId }, { donated: true });
+            await Donor.updateOne({ _id: donorId }, { donated: true });
 
             donorDetailsList.push({ donor, donatedDetail });
         }
