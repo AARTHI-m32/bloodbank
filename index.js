@@ -231,7 +231,8 @@ app.get('/donor-details', async (request, response) => {
                 continue;
             }
 
-            await Donor.findByIdAndUpdate(donorId, { donated: true });
+            // await Donor.findByIdAndUpdate(donorId, { donated: true });
+            await Donor.updateOne({ id: donorId }, { donated: true });
 
             donorDetailsList.push({ donor, donatedDetail });
         }
