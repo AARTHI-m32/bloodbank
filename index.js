@@ -226,7 +226,7 @@ app.get('/donor-details', async (request, response) => {
         for (const donatedDetail of donatedDetails) {
             const donorId = donatedDetail.id;
 
-            const donor = await Donor.findById(donorId);
+            const donor = await Donor.find({ id: donorId });
             if (!donor) {
                 continue;
             }
@@ -248,7 +248,7 @@ app.get('/profile/:donor_id', async (request, response) => {
     const donorId = request.params.donor_id;
 
     try {
-        const donorDetails = await Donor.findById(donorId);
+        const donorDetails = await Donor.find({ id: donorId });
         const donationDetails = await Donated.find({ id: donorId }).sort({ date: -1 });
 
         const result = {
