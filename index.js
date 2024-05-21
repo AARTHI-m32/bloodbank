@@ -90,7 +90,7 @@ app.post('/add-donated',async function (request,response){
         // Use the same ID provided from the register process          
         const newDonated = await Donated.create({
            
-            _id: request.body.id,
+            // _id: request.body.id,
             id:request.body.id,
             amount:request.body.amount,
             hospitalname:request.body.hospitalname,
@@ -114,10 +114,10 @@ app.post('/add-donated',async function (request,response){
 })
 app.post('/add-donor', async function (request, response) {
     try {
-        const {donorId } = request.query;
+        const {_id } = request.query;
         // const donorId = request.body.id; 
         const newDonor = await Donor.create({
-            _id: donorId,
+            id: _id,
             donorname: request.body.donorname,
             age:request.body.age,
             email: request.body.email,
@@ -179,7 +179,7 @@ app.put('/edit-donor', async function (request, response) {
         const { _id } = request.query;
         // const donorId = request.params._id;
         const updatedDonor = await Donor.findOneAndUpdate(
-            { _id: _id },
+            { id: _id },
             {
                 $set: {
                     donorname: request.body.donorname,
