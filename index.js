@@ -179,7 +179,7 @@ app.put('/edit-donor', async function (request, response) {
         const { _id } = request.query;
         // const donorId = request.params._id;
         const updatedDonor = await Donor.findOneAndUpdate(
-            { id: _id },
+            { _id: _id },
             {
                 $set: {
                     donorname: request.body.donorname,
