@@ -244,35 +244,6 @@ app.get('/donor-details', async (request, response) => {
     }
 });
 
-
-// app.get('/profile', async (request, response) => {
-//     const { _id } = request.query;
-//     // const donorId = request.params.userId.trim();
-
-//     if (!mongoose.Types.ObjectId.isValid(_id)) {
-//         return response.status(400).send('Invalid user ID format');
-//     }
-
-//     try {
-//         const donorDetails = await Donor.find({ id: _id });
-//         if (!donorDetails) {
-//             return response.status(404).send('Donor not found');
-//         }
-//         //  const did=donorDetails._id
-//         const donationDetails = await Donated.find({ id: donorDetails._id }).sort({ date: -1 });
-
-//         const result = {
-//             donorDetails,
-//             donationDetails
-//         };
-
-//         response.json(result);
-//     } catch (err) {
-//         console.error('Error fetching profile data:', err);
-//         response.status(500).send('Server error');
-//     }
-// });
-
 app.get('/profile', async (request, response) => {
     const { _id } = request.query;
 
@@ -281,12 +252,20 @@ app.get('/profile', async (request, response) => {
     }
 
     try {
-        const donorDetails = await Donor.findOne({ id: _id });
-        if (!donorDetails) {
+        // Find all donors by the given ID (assuming 'id' is the field in Donor model)
+        const donorDetails = await Donor.find({ id: _id });
+        
+        if (!donorDetails.length) {
             return response.status(404).send('Donor not found');
         }
 
-        const donationDetails = await Donated.find({ id : donorDetails._id }).sort({ date: -1 });
+        // Fetch donation details for each donor
+        const donationDetails = await Promise.all(
+            donorDetails.map(async (donor) => {
+                const donations = await Donated.find({ id: donor._id }).sort({ date: -1 });
+                return donations;
+            })
+        );
 
         const result = {
             donorDetails,
@@ -299,6 +278,34 @@ app.get('/profile', async (request, response) => {
         response.status(500).send('Server error');
     }
 });
+
+
+// app.get('/profile', async (request, response) => {
+//     const { _id } = request.query;
+
+//     if (!mongoose.Types.ObjectId.isValid(_id)) {
+//         return response.status(400).send('Invalid user ID format');
+//     }
+
+//     try {
+//         const donorDetails = await Donor.findOne({ id: _id });
+//         if (!donorDetails) {
+//             return response.status(404).send('Donor not found');
+//         }
+
+//         const donationDetails = await Donated.findOne({ id : donorDetails._id }).sort({ date: -1 });
+
+//         const result = {
+//             donorDetails,
+//             donationDetails
+//         };
+
+//         response.json(result);
+//     } catch (err) {
+//         console.error('Error fetching profile data:', err);
+//         response.status(500).send('Server error');
+//     }
+// });
 
 
 module.exports = app; 
