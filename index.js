@@ -286,7 +286,7 @@ app.get('/profile', async (request, response) => {
             return response.status(404).send('Donor not found');
         }
 
-        const donationDetails = await Donated.findOne({ id : donorDetails._id }).sort({ date: -1 });
+        const donationDetails = await Donated.find({ id : donorDetails._id }).sort({ date: -1 });
 
         const result = {
             donorDetails,
