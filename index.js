@@ -143,8 +143,7 @@ app.post('/add-donor', async function (request, response) {
 })
 
 app.get('/req-donor', async function (request, response) {
-    try {
-      
+    try {     
         const donors = await Donor.find({ donated: false }); 
         response.status(200).json(donors);
     } catch (error) {
@@ -156,6 +155,22 @@ app.get('/req-donor', async function (request, response) {
         });
     }
 });
+
+app.delete('/delete-donor',async (request,response) => {
+  
+  try  {  const { _id } = request.query;
+    const donor = await Donor.findOneAndDelete({_id});
+    if (!donor) {
+        return response.status(404).json({ message: 'Donor not found' });
+      }
+  
+      response.status(200).json({ message: 'Donor details deleted successfully' });
+    } catch (error) {
+      console.error('Error:', error);
+      response.status(500).json({ message: 'Error deleting donor details' });
+    }
+})
+
 
 app.get('/get-donor', async (request, response) => {
     try {
@@ -279,33 +294,6 @@ app.get('/profile', async (request, response) => {
     }
 });
 
-
-// app.get('/profile', async (request, response) => {
-//     const { _id } = request.query;
-
-//     if (!mongoose.Types.ObjectId.isValid(_id)) {
-//         return response.status(400).send('Invalid user ID format');
-//     }
-
-//     try {
-//         const donorDetails = await Donor.findOne({ id: _id });
-//         if (!donorDetails) {
-//             return response.status(404).send('Donor not found');
-//         }
-
-//         const donationDetails = await Donated.findOne({ id : donorDetails._id }).sort({ date: -1 });
-
-//         const result = {
-//             donorDetails,
-//             donationDetails
-//         };
-
-//         response.json(result);
-//     } catch (err) {
-//         console.error('Error fetching profile data:', err);
-//         response.status(500).send('Server error');
-//     }
-// });
 
 
 module.exports = app; 
