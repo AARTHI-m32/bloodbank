@@ -63,7 +63,8 @@ app.post('/req-user', async (request, response) => {
         response.status(200).json({
           status: "success",
           message: "Valid user",
-          _id: user._id
+          _id: user._id,
+          username:user.username
         });
       } else {
         response.status(401).json({
