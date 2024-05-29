@@ -317,7 +317,7 @@ app.post('/add-camp', async (request, response) => {
 
 app.get('/get-camp', async (request, response) => {
     try {
-        const camps = await Camp.find();
+        const camps = await Camp.find({ upcoming: true });
         response.status(200).json(camps);
     } catch (error) {
         response.status(500).json({ message: 'Error fetching camps', error });
