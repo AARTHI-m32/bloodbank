@@ -5,6 +5,7 @@ const Register=require('./register.js')
 const bodyParser = require('body-parser')
 const cors=require('cors')
 const Donated = require('./donated.js')
+const Camp = require('./camp.js')
 
 const app = express()
 app.use(bodyParser.json())
@@ -294,6 +295,34 @@ app.get('/profile', async (request, response) => {
     }
 });
 
+app.post('/add-camp', async (request, response) => {
+    const { organisation, date, description, location, startTime, endTime } = request.body;
+
+    try {
+        const camp = new Camp({
+            organisation,
+            date: new Date(date),
+            description,
+            location,
+            startTime: new Date(startTime),
+            endTime: new Date(endTime)
+        });
+
+        await camp.save();
+        response.status(201).json({ message: 'Camp created successfully', camp });
+    } catch (error) {
+        response.status(500).json({ message: 'Error creating camp', error });
+    }
+});
+
+app.get('/get-camp', async (request, response) => {
+    try {
+        const camps = await Camp.find();
+        response.status(200).json(camps);
+    } catch (error) {
+        response.status(500).json({ message: 'Error fetching camps', error });
+    }
+});
 
 
 module.exports = app; 
