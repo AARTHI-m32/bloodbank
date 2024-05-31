@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 const cors=require('cors')
 const Donated = require('./donated.js')
 const Camp = require('./camp.js')
-
+const Volunteer =require("./volunteer.js")
 const app = express()
 app.use(bodyParser.json())
 app.use(cors())
@@ -321,6 +321,28 @@ app.get('/get-camp', async (request, response) => {
         response.status(200).json(camps);
     } catch (error) {
         response.status(500).json({ message: 'Error fetching camps', error });
+    }
+});
+
+app.post('/add-volunteer', async (request, response) => {
+    try {
+        const { id,fullName, dob, phoneNumber, email, role, agreement,camp } = request.body;
+
+        const newVolunteer = new Volunteer({
+            id,
+            fullName,
+            dob,
+            phoneNumber,
+            email,
+            role,
+            agreement,
+            camp
+        });
+
+        await newVolunteer.save();
+        response.status(201).json({ message: 'Volunteer registered successfully' });
+    } catch (error) {
+        response.status(400).json({ error: error.message });
     }
 });
 
