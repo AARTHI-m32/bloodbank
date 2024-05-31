@@ -283,9 +283,13 @@ app.get('/profile', async (request, response) => {
             })
         );
 
+        // Fetch volunteer details for the user
+        const volunteerDetails = await Volunteer.find({ id: _id }).populate('camp').sort({ date: -1 });
+
         const result = {
             donorDetails,
-            donationDetails
+            donationDetails,
+            volunteerDetails
         };
 
         response.json(result);
@@ -294,7 +298,6 @@ app.get('/profile', async (request, response) => {
         response.status(500).send('Server error');
     }
 });
-
 app.post('/add-camp', async (request, response) => {
     const { organisation, date, description, location, startTime, endTime } = request.body;
 
