@@ -298,6 +298,7 @@ app.get('/profile', async (request, response) => {
         response.status(500).send('Server error');
     }
 });
+
 app.post('/add-camp', async (request, response) => {
     const { organisation, date, description, location, startTime, endTime } = request.body;
 
