@@ -270,18 +270,20 @@ app.get('/profile', async (request, response) => {
     try {
         // Find all donors by the given ID (assuming 'id' is the field in Donor model)
         const donorDetails = await Donor.find({ id: _id });
-        
-        if (!donorDetails.length) {
-            return response.status(404).send('Donor not found');
-        }
 
         // Fetch donation details for each donor
-        const donationDetails = await Promise.all(
-            donorDetails.map(async (donor) => {
-                const donations = await Donated.find({ id: donor._id }).sort({ date: -1 });
-                return donations;
-            })
-        );
+        let donationDetails = [];
+        if (donorDetails.length > 0) {
+            donationDetails = await Promise.all(
+                donorDetails.map(async (donor) => {
+                    const donations = await Donated.find({ id: donor._id }).sort({ date: -1 });
+                    return donations;
+                })
+            );
+        }
+
+        // Flatten the donation details array
+        donationDetails = donationDetails.flat();
 
         // Fetch volunteer details for the user
         const volunteerDetails = await Volunteer.find({ id: _id }).populate('camp').sort({ date: -1 });
@@ -298,6 +300,7 @@ app.get('/profile', async (request, response) => {
         response.status(500).send('Server error');
     }
 });
+
 
 app.post('/add-camp', async (request, response) => {
     const { organisation, date, description, location, startTime, endTime } = request.body;
