@@ -1,0 +1,732 @@
+body{
+  margin:0px;
+  padding:0px;
+  background-color: black;
+  font-family: cursive;
+}
+#divn{
+  background-color: red;
+  height:70px;
+  padding-top: 30px;
+  font-size: 25px;
+}
+#divnl{
+  float:right;
+}
+
+.divna{
+  text-decoration: none ;
+  padding-right: 20px;
+  padding-left: 20px;
+  color:black;
+  transition: 0.4s;
+}
+.divna:hover{
+  color:white;
+  transform: scale(1.1);
+}
+#divnh{
+  padding-left: 20px;
+}
+#divnbut{
+
+  border-radius: 5px;
+  height:40px;
+  font-family: cursive;
+  font-size: 20px; 
+  color:blanchedalmond;
+  background-color: black;
+  margin-left: 20px;
+  margin-right: 20px;
+  transition: 0.4s;
+}
+#divnbut:hover{
+  transform: scale(1.1);
+}
+
+#hdiv{
+  display:block;
+
+}
+
+#pdiv{
+  position: absolute;
+  top: 30%;
+  left: 60%;
+  right: 10%;
+  color:red;
+  font-size: 25px ;
+  
+}
+#himg{
+  width:50%;
+  height:600px;
+}
+.hbut{
+  width:100px;
+  border-radius: 5px;
+  height:40px;
+  font-family: cursive;
+  font-size: 20px;
+  background-color: blanchedalmond;
+  color:black;
+  margin-right: 20px;
+  transition: 0.4s;
+}
+.hbut:hover{
+  background-color: darkred;
+  color: white;
+  transform: scale(1.1);
+}
+#h2div{
+  background-color: red;
+  padding: 10px;
+  display: block;
+  height: 600px;
+  width: 100%;
+}
+#h2p1{
+  position: absolute;
+  margin-top: 30px;
+  width:20%;
+  height:400px;
+  background-color: black;
+  margin-left: 40px;
+  transition: 0.4s;
+}
+#h2p1:hover,#h2p2:hover,#h2p3:hover,#h2p4:hover{
+  transform: scale(1.1);
+}
+#h2p2{
+  position: absolute;
+  margin-top: 30px;
+  left:28%;
+  width:20%;
+  height:400px;
+  background-color: black;
+  transition: 0.4s;
+}
+#h2p3{
+  position: absolute;
+  margin-top: 30px;
+  left:53%;
+  width:20%;
+  height:400px;
+  background-color: black;
+  transition: 0.4s;
+}
+#h2p4{
+  position: absolute;
+  margin-top: 30px;
+  left:78%;
+  width:20%;
+  height:400px;
+  background-color: black;
+  transition: 0.4s;
+}
+#h2p11{
+  padding: 5px;
+  color:red;
+  font-size: 17px;
+}
+#h2p11:hover{
+  color:white;
+}
+.h2img{
+  width:100%;
+  height:150px;
+}
+#h3div{
+  height:100px;
+  width:100%;
+  background-color: black;
+  color:red;
+  text-align: center;
+}
+
+#logindiv{
+  width:100%;
+  height:600px;
+  background-color: black;
+}
+#login{
+  width:30%;
+  height:350px;
+  margin-top: 170px;
+  margin-left: 530px;
+  background-color: red;
+  border-radius: 5px;
+}
+#ldown{
+  text-align: center;
+}
+#lhead{
+  text-align: center;
+}
+.llabel{
+  font-size: 20px;
+  padding-left: 30px;
+}
+#lname{
+  font-size: 15px;
+  height: 25px;
+  width:50%;
+  margin-left: 40px;
+  border-radius: 5px;
+}
+#lpassword{
+  font-size: 15px;
+  height: 25px;
+  width:50%;
+  margin-left: 46px;
+  border-radius: 5px;
+}
+#register{
+  background-color: red;
+  width:30%;
+  height:390px;
+  margin-top: 150px;
+  margin-left: 530px;
+  border-radius: 5px;
+}
+#rhead{
+  text-align: center;
+
+}
+.rlabel{
+  font-size: 20px;
+  padding-left: 40px;
+
+}
+#rname{
+  font-size: 15px;
+  height: 25px;
+  width:50%;
+  margin-left: 40px;
+  border-radius: 5px;
+}
+#rpassword{
+  font-size: 15px;
+  height: 25px;
+  width:50%;
+  border-radius: 5px;
+  margin-left:47px;
+}
+#remail{
+  font-size: 15px;
+  height: 25px;
+  width:50%;
+  border-radius: 5px;
+  margin-left: 75px;
+}
+#rsubmit,#loginsubmit{
+  width:150px;
+  border-radius: 5px;
+  height:40px;
+  font-family: cursive;
+  font-size: 20px;
+  background-color:white;
+  color:black;
+  margin-top: 20px;
+  margin-left: 150px;
+  transition: 0.4s;
+}
+#rsubmit:hover,#loginsubmit:hover{
+  background-color: darkred;
+  color: white;
+  transform: scale(1.1);
+}
+
+#dform{
+    background-color: red;
+    width:40%;
+    height:550px;
+    margin-top:100px;
+    margin-left:450px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+#hform{
+  text-align: center;
+}
+.label{
+  padding-left: 70px;
+  font-size: 20px;
+}
+#donorname{
+  margin-left: 100px;
+  width: 50%;
+  height: 25px;
+  font-size: 15px;
+  border-radius: 5px;
+}
+#age{
+  border-radius: 5px;
+  width: 50%;
+  height: 25px;
+  margin-left: 115px;
+}
+#bloodgroup{
+  border-radius: 5px;
+  width: 50%;
+  height: 25px;
+  margin-left: 40px;
+}
+#address{
+  border-radius: 5px;
+  width: 50%;
+  height: 25px;
+  margin-left: 75px;
+}
+#phoneno{
+  width: 50%;
+  height: 25px;
+  margin-left: 20px;
+  border-radius: 5px;
+}
+#gender{
+  width: 50%;
+  height: 25px;
+  margin-left: 85px;
+  border-radius: 5px;
+}
+#email{
+  width: 50%;
+  height: 25px;
+  margin-left: 95px;
+  border-radius: 5px;
+}
+#donors {
+  margin: 0px;
+ 
+}
+#butform{
+  width:200px;
+  border-radius: 5px;
+  height:40px;
+  font-family: cursive;
+  font-size: 20px;
+  background-color: blanchedalmond;
+  color:black;
+  margin-left: 200px;
+  transition: 0.4s;
+}
+#butform:hover{
+  background-color: darkred;
+  color: white;
+  transform: scale(1.1);
+}
+#donorheading{
+  color:red;
+  font-size: 30px;
+ 
+  margin-left: 50%;
+  display: inline;
+}
+.dbut{
+  width:90px;
+  border-radius: 5px;
+  height:30px;
+  font-family: cursive;
+  font-size: 18px;
+  background-color: blanchedalmond;
+  color:black;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 7px;
+  float: right;
+  transition: 0.4s;
+}
+.dbut:hover{
+  background-color: darkred;
+  color: white;
+  transform: scale(1.1);
+}
+.donatebutton{
+  width:100px;
+  border-radius: 5px;
+  height:40px;
+  font-family: cursive;
+  font-size: 20px;
+  background-color: blanchedalmond;
+  color:black;
+  float:right;
+  margin-right: 50px;
+
+}
+.donatebutton:hover{
+  background-color: darkred;
+  color: white;
+  transform: scale(1.1);
+}
+.donor-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.donor-info {
+  width: 25%; /* Adjust the width as needed */
+  border: 1px solid #ccc;
+  margin-left: 50px;
+  margin-right: 50px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 30px;
+  margin-bottom: 20px; /* Adjust the margin between donors */
+  background-color: burlywood;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.donor-info p {
+  margin: 5px 0;
+}
+
+.donor-info strong {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+#donform{
+  background-color: red;
+  color:black;
+  width:40%;
+  height:400px;
+  margin-top: 150px;
+  margin-left: 440px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-family: cursive;
+  
+}
+#donh{
+  text-align:center;
+  font-size: 25px;
+  padding-top: 20px;
+}
+.donlabel{
+  padding-left: 70px;
+  width:50%;
+}
+#damount{
+  border-radius: 5px;
+  width: 40%;
+  height: 25px;
+  margin-left: 75px;
+}
+#dhospital{
+  border-radius: 5px;
+  width: 40%;
+  height: 25px;
+  margin-left: 68px;
+}
+#dhospitaladd{
+  border-radius: 5px;
+  width: 40%;
+  height: 25px;
+  font-size: 15px;
+  margin-left: 42px;
+}
+#ddate{
+  border-radius: 5px;
+  width: 40%;
+  height: 25px;
+  margin-left: 158px;
+}
+#donbut{
+  width:100px;
+  border-radius: 5px;
+  height:40px;
+  font-family: cursive;
+  font-size: 20px;
+  background-color: blanchedalmond;
+  color:black;
+  margin-left: 250px;
+  transition: 0.4s;
+}
+#donbut:hover{
+  background-color: darkred;
+  color: white;
+  transform: scale(1.1);
+}
+
+/* //details */
+
+#deth{
+  text-align: center;
+  color:red;
+}
+/* .donor-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+} */
+.detail{
+  width: 25%; /* Adjust the width as needed */
+  border: 1px solid #ccc;
+  margin-left: 50px;
+  margin-right: 50px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 30px;
+  margin-bottom: 20px; /* Adjust the margin between donors */
+  background-color: burlywood;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+#searchbar{
+  width:20%;
+  height:30px;
+  margin-left:670px;
+  border-radius: 5px;
+  border-color: rgb(217, 28, 28) 2px;
+}
+
+/* profile */
+#pvhead{
+  text-align: center;
+  color: red;
+  font-size: 22px;
+}
+#phead{
+  text-align: center;
+  color: white;
+  margin-left: 170px;
+}
+.pdonor{
+  color: red;
+  text-align: center;
+  font-size: 22px;
+}
+#display{
+  color:red;
+  text-align: center;
+  /* background-color: red; */
+}
+
+#campdiv{
+  color:red;
+}
+#hcamp{
+  border-radius: 5px;
+  animation: slant 4s infinite alternate;
+  color:red;
+  width: fit-content;
+  margin-left: 600px;
+}
+#pcamp{
+  background-color:white;
+  width:70%;
+  margin-left: 200px;
+  color:darkred;
+  text-align: center;
+  height: 310px;
+  font-size: 20px;
+  border-radius: 5px;
+  padding-top: 15px;
+}
+
+#camp-1div{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+#camp-div{
+  background-color: burlywood;
+  background-repeat: no-repeat;
+  background-image: url('https://t4.ftcdn.net/jpg/02/45/14/29/360_F_245142959_oEjyvItwpazveqxOyykF2a8jWx4WkvWO.jpg');
+  color:black;
+  background-size: cover;
+  width:50%;
+  margin-left: 380px;
+  font-size: 18px;
+  font-family: cursive;
+  padding: 15px;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  transition: 0.4s;
+}
+#camp-div:hover{
+  transform: scale(1.1);
+}
+#hc{
+  color:white;
+  border-radius: 5px;
+  background-color: black;
+  width:max-content;
+  margin-left: 150px;
+}
+#cbut{
+  border-radius: 5px;
+  height:40px;
+  font-family: cursive;
+  font-size: 20px;
+  background-color:darkred;
+  color:white; 
+  transition: 0.4s;
+  float: right;
+  margin-right: 50px;
+}
+#cbut:hover{
+  background-color: blanchedalmond;
+  color: black;
+  transform: scale(1.1);
+}
+#cparth{
+  animation: slant 4s infinite alternate;
+  color:white;
+  text-align: center;
+  background-color: black;
+  width: fit-content;
+  margin-left: 550px;
+  border-radius: 5px;
+}
+#camppart{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  
+}
+#clast{
+  /* background-color: lightblue; */
+  width:50%;
+  margin-left:380px;
+  margin-top: 0px;
+}
+#campbut{
+  border-radius: 5px;
+  height:40px;
+  font-family: cursive;
+  font-size: 20px;
+  background-color:darkred;
+  color:white; 
+  transition: 0.4s;
+}
+#campbut:hover{
+  background-color: black;
+  color: blanchedalmond;
+  transform: scale(1.1);
+}
+#feed{
+background-color: darkred;
+height:500px;
+}
+.camppart-info {
+  background-color: #f8f9fa;
+  border-left: 4px solid #ff4757;
+  padding: 15px;
+  margin: 10px auto;
+  width: 40%;
+  text-align: left;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  color:black;
+}
+#limg{
+  width:50%;
+  height: 300px;
+  margin-left: 380px;
+  margin-top: 20px;
+  border-radius: 100px;
+}
+#cimg{
+  width:100%;
+  height: 700px;
+}
+#cvhead{
+  /* background-color:lightblue; */
+  color: white;
+}
+#ch1,#ch2{
+  text-align: center;
+}
+#ch1{
+  margin-top: 0px;
+}
+#ch2{
+  margin-bottom: 0px;
+}
+#vform{
+  background-color: red;
+  width:35%;
+  margin-top: 70px;
+  margin-left: 500px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-family: cursive;
+  padding-left: 50px;
+  padding-right: 30px;
+}
+#vhead{
+  
+  text-align: center;
+  font-size: 24px;
+}
+.Vlabelr{
+  margin-left: 250px;
+}
+#vname{
+  margin-left: 140px;
+  height:20px;
+  width:230px;
+}
+#vdob{
+  margin-left: 107px;
+  height:20px;
+  width:230px;
+}
+#vphone{
+  margin-left: 99px;
+  height:20px;
+  width:230px;
+}
+#vemail{
+  margin-left: 99px;
+  height:20px;
+  width:230px;
+}
+#volbut{
+  border-radius: 5px;
+  height:40px;
+  font-family: cursive;
+  font-size: 20px;
+  background-color:white;
+  margin-left:200px;
+  color:black; 
+  transition: 0.4s;
+}
+#volbut:hover{
+  background-color: darkred;
+  color: white;
+  transform: scale(1.1);
+}
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-0);
+  }
+}
+#himg,#hp,.hbut {
+  animation: slideIn 2s ease-in-out;
+}
+
+@keyframes slant {
+  0% {
+      transform: rotate(0deg);
+  }
+  50% {
+      transform: rotate(2deg);
+  }
+  100% {
+      transform: rotate(-2deg);
+  }
+}
+
+#eye{
+ color: black;
+ background-color: red;
+ border: none;
+}
+
