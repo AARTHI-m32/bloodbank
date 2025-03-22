@@ -8,6 +8,8 @@ const Donated = require('./donated.js')
 const Camp = require('./camp.js')
 const Volunteer =require("./volunteer.js")
 const app = express()
+const nodemail=require('nodemailer')
+require("env").configure()
 app.use(bodyParser.json())
 app.use(cors())
 // https://bloodbank-exwj.onrender.com
@@ -113,7 +115,35 @@ app.post('/add-donated',async function (request,response){
     }
 
 })
+
+const transporter= nodemail.createTransport({
+    service:"gmail",
+    auth:{
+        user:process.env.EMAIL,
+        pass:process.env.EMAIL_PASS
+    }
+})
+
+const sendemailalert = async (email,donor)=>{
+    const mail={
+        from:process.env.EMAIL,
+        to:email,
+        subject : "🚨 New Emergency Alert! from Bloodbuddy",
+        text : `${donor.donorname} - (${donor.gender}) is in emergency situation whoe requires 
+        ${donor.bloodgroup} bloodgroup\n\n Willing to donate ? Login in to the app`
+    }
+          try{
+                await transporter.sendmail(mail);
+                console.log("email sent successfully")
+          }
+          catch(error){
+            console.log("error sending email")
+          }
+}
+
 app.post('/add-donor', async function (request, response) {
+
+    const users=Register.find()
     try {
         const {_id } = request.query;
         // const donorId = request.body.id; 
@@ -128,6 +158,11 @@ app.post('/add-donor', async function (request, response) {
             phoneno:request.body.phoneno
             
         })
+
+        users.forEach((user)=>{
+                 sendemailalert(user.email,newDonor)
+        })
+
         response.status(201).json({
             status: 'success',
             message: 'Donor created successfully',
