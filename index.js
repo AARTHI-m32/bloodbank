@@ -18,7 +18,7 @@ async function connectToDb() {
     try {
         await mongoose.connect('mongodb+srv://aarthi32:Aarthi32@cluster0.grrieqs.mongodb.net/BloodBank?retryWrites=true&w=majority&appName=Cluster0')
         console.log('DB Connection established')
-        const port = process.env.PORT || 8002 // in cloud service take any port no which is avaliable(process.env.PORT) , in local machine it will take 8002 as port number
+        const port = process.env.PORT || 8000 // in cloud service take any port no which is avaliable(process.env.PORT) , in local machine it will take 8002 as port number
         app.listen(port, function () {
             console.log(`Listening on port ${port} `)
         })
@@ -132,7 +132,7 @@ const sendemailalert = async (email,donor)=>{
         text : `${donor.donorname} - (${donor.gender}) is in emergency situation whoe requires 
         ${donor.bloodgroup} bloodgroup\n\n Willing to donate ? Login in to the app`
     }
-    console.log(process.env.EMAIL)
+   
           try{
                 await transporter.sendmail(mail);
                 console.log("email sent successfully")
@@ -144,7 +144,8 @@ const sendemailalert = async (email,donor)=>{
 
 app.post('/add-donor', async function (request, response) {
 
-    const users=Register.find()
+    const users=await Register.find()
+
     try {
         const {_id } = request.query;
         // const donorId = request.body.id; 
@@ -161,6 +162,7 @@ app.post('/add-donor', async function (request, response) {
         })
 
         users.forEach((user)=>{
+            console.log(user.email)
                  sendemailalert(user.email,newDonor)
         })
 
