@@ -18,7 +18,7 @@ async function connectToDb() {
     try {
         await mongoose.connect('mongodb+srv://aarthi32:Aarthi32@cluster0.grrieqs.mongodb.net/BloodBank?retryWrites=true&w=majority&appName=Cluster0')
         console.log('DB Connection established')
-        const port = process.env.PORT || 8000 // in cloud service take any port no which is avaliable(process.env.PORT) , in local machine it will take 8002 as port number
+        const port = process.env.PORT || 8001 // in cloud service take any port no which is avaliable(process.env.PORT) , in local machine it will take 8002 as port number
         app.listen(port, function () {
             console.log(`Listening on port ${port} `)
         })
@@ -134,11 +134,11 @@ const sendemailalert = async (email,donor)=>{
     }
    
           try{
-                await transporter.sendmail(mail);
+                await transporter.sendMail(mail);
                 console.log("email sent successfully")
           }
           catch(error){
-            console.log("error sending email")
+            console.log(error)
           }
 }
 
