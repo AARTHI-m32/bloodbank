@@ -9,7 +9,7 @@ const Camp = require('./camp.js')
 const Volunteer =require("./volunteer.js")
 const app = express()
 const nodemail=require('nodemailer')
-require("env").configure()
+require("dotenv").config()
 app.use(bodyParser.json())
 app.use(cors())
 // https://bloodbank-exwj.onrender.com
@@ -132,6 +132,7 @@ const sendemailalert = async (email,donor)=>{
         text : `${donor.donorname} - (${donor.gender}) is in emergency situation whoe requires 
         ${donor.bloodgroup} bloodgroup\n\n Willing to donate ? Login in to the app`
     }
+    console.log(process.env.EMAIL)
           try{
                 await transporter.sendmail(mail);
                 console.log("email sent successfully")
