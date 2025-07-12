@@ -360,12 +360,27 @@ app.post('/add-camp', async (request, response) => {
     }
 });
 
-app.get('/get-camp', async (request, response) => {
+
+
+app.get('/get-camp', async (req, res) => {
     try {
         const camps = await Camp.find({ upcoming: true });
-        response.status(200).json(camps);
+        const now = new Date();
+        const expiredCampIds = camps
+            .filter(camp => new Date(camp.date) < now)
+            .map(camp => camp._id);
+
+        if (expiredCampIds.length > 0) {
+            await Camp.updateMany(
+                { _id: { $in: expiredCampIds } },
+                { $set: { upcoming: false } }
+            );
+        }
+
+        const updatedCamps = await Camp.find({ upcoming: true });
+        res.status(200).json(updatedCamps);
     } catch (error) {
-        response.status(500).json({ message: 'Error fetching camps', error });
+        res.status(500).json({ message: 'Error fetching camps', error });
     }
 });
 
