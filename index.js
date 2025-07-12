@@ -129,8 +129,8 @@ const sendemailalert = async (email,donor)=>{
         from:process.env.EMAIL,
         to:email,
         subject : "🚨 New Emergency Alert! from Bloodbuddy",
-        text : `${donor.donorname} - (${donor.gender}) is in emergency situation whoe requires 
-        ${donor.bloodgroup} bloodgroup\n\n Willing to donate ? Login in to the app`
+        text : `${donor.donorname} - (${donor.gender}) is in willing to donate blood of  
+        ${donor.bloodgroup} bloodgroup\n\n Want the donor ? Login in to the app`
     }
    
           try{
